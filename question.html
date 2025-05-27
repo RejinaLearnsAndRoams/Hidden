@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Connect - Questions</title>
+    <style>
+        :root {
+            --primary-color: #950dcb;
+            --secondary-color: #950dcb;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --light-text: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: var(--text-color);
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: white;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #e0c4ff;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .sidebar-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .content {
+            flex-grow: 1;
+        }
+        
+        .question-feed {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .feed-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .sort-options select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        
+        .question-card {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-card:last-child {
+            border-bottom: none;
+        }
+        
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .question-title:hover {
+            color: #b517f4;
+        }
+        
+        .question-meta {
+            display: flex;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .question-meta span {
+            margin-right: 1rem;
+        }
+        
+        .question-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .topic-tag {
+            background: #f2e0ff;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .topic-tag:hover {
+            background: #e8d0f7;
+        }
+        
+        .ask-question-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .ask-question-btn:hover {
+            background-color: #7d0aa8;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+        
+        .page-link {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .page-link.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .page-link:hover:not(.active) {
+            background-color: #f1f1f1;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        /* Styles for the main footer tag */
+footer {
+    width: 100%; /* w-full */
+    background-color: #ffffff; /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    text-align: center; /* text-center */
+    margin-top: auto; /* mt-auto (flexbox property to push to bottom) */
+    border-top-left-radius: 0.5rem; /* rounded-t-lg */
+    border-top-right-radius: 0.5rem; /* rounded-t-lg */
+}
+
+/* Styles for the inner container div */
+.max-w-7xl {
+    max-width: 80rem; /* max-w-7xl */
+}
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Styles for the flex container within the footer */
+.flex-col {
+    flex-direction: column;
+}
+.md\:flex-row {
+    /* On medium screens and up */
+    flex-direction: row;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.items-center {
+    align-items: center;
+}
+
+/* Styles for the left content block (logo and tagline) */
+.mb-4 {
+    margin-bottom: 1rem;
+}
+.md\:mb-0 {
+    /* On medium screens and up */
+    margin-bottom: 0;
+}
+
+/* Styles for the BCA Connect logo link */
+.text-xl {
+    font-size: 1.25rem;
+}
+.font-bold {
+    font-weight: 700;
+}
+.text-primary {
+    color: #950dcb; /* This comes from your tailwind.config.js primary color */
+}
+.no-underline {
+    text-decoration: none;
+}
+
+/* Styles for the tagline paragraph */
+.text-gray-600 {
+    color: #4b5563; /* A shade of gray */
+}
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+/* Styles for the social media icons container */
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 1.5rem; /* space-x-6 */
+}
+
+/* Styles for individual social media links */
+.hover\:text-primary:hover {
+    color: #950dcb; /* Hover color from your tailwind.config.js primary color */
+}
+.transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+}
+.duration-200 {
+    transition-duration: 200ms;
+}
+
+/* Styles for the copyright section */
+.border-t {
+    border-top-width: 1px;
+}
+.border-gray-200 {
+    border-color: #e5e7eb; /* A light shade of gray */
+}
+.mt-6 {
+    margin-top: 1.5rem;
+}
+.pt-6 {
+    padding-top: 1.5rem;
+}
+.text-gray-500 {
+    color: #6b7280; /* A medium shade of gray */
+}
+.text-sm {
+    font-size: 0.875rem;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">BCA <span>Connect</span></a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="question.html">Questions</a>
+            <a href="topics.html">Topics</a>
+            <a href="user.html">Profile</a>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <aside class="sidebar">
+            <input type="text" class="search-bar" placeholder="Search questions...">
+            <a href="#" class="ask-question-btn">Ask Question</a>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Topics</h3>
+                <a href="#" class="sidebar-link">Programming</a>
+                <a href="#" class="sidebar-link">Database</a>
+                <a href="#" class="sidebar-link">Networking</a>
+                <a href="#" class="sidebar-link">Web Development</a>
+                <a href="#" class="sidebar-link">Mobile Apps</a>
+                <a href="#" class="sidebar-link">Cyber Security</a>
+                <a href="#" class="sidebar-link">See more...</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Recent Activity</h3>
+                <a href="#" class="sidebar-link">New questions</a>
+                <a href="#" class="sidebar-link">Most answered</a>
+                <a href="#" class="sidebar-link">Trending</a>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <div class="question-feed">
+                <div class="feed-header">
+                    <h2 class="feed-title">Recent Questions</h2>
+                    <div class="sort-options">
+                        <select>
+                            <option>Newest</option>
+                            <option>Most Viewed</option>
+                            <option>Most Answered</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <a href="#" class="question-title">What are the best practices for database normalization in large-scale applications?</a>
+                    <div class="question-meta">
+                        <span>Asked 2 hours ago</span>
+                        <span>15 answers</span>
+                        <span>42 views</span>
+                    </div>
+                    <div class="question-topics">
+                        <a href="#" class="topic-tag">Database</a>
+                        <a href="#" class="topic-tag">Best Practices</a>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <a href="#" class="question-title">How to implement JWT authentication in a Node.js backend with React frontend?</a>
+                    <div class="question-meta">
+                        <span>Asked 5 hours ago</span>
+                        <span>8 answers</span>
+                        <span>76 views</span>
+                    </div>
+                    <div class="question-topics">
+                        <a href="#" class="topic-tag">Web Development</a>
+                        <a href="#" class="topic-tag">Node.js</a>
+                        <a href="#" class="topic-tag">React</a>
+                        <a href="#" class="topic-tag">Authentication</a>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <a href="#" class="question-title">What's the difference between TCP and UDP protocols, and when to use each?</a>
+                    <div class="question-meta">
+                        <span>Asked yesterday</span>
+                        <span>23 answers</span>
+                        <span>128 views</span>
+                    </div>
+                    <div class="question-topics">
+                        <a href="#" class="topic-tag">Networking</a>
+                        <a href="#" class="topic-tag">Protocols</a>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <a href="#" class="question-title">Best resources to learn Python for data science as a complete beginner?</a>
+                    <div class="question-meta">
+                        <span>Asked yesterday</span>
+                        <span>17 answers</span>
+                        <span>94 views</span>
+                    </div>
+                    <div class="question-topics">
+                        <a href="#" class="topic-tag">Python</a>
+                        <a href="#" class="topic-tag">Data Science</a>
+                        <a href="#" class="topic-tag">Learning</a>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <a href="#" class="question-title">How to optimize React application performance for large datasets?</a>
+                    <div class="question-meta">
+                        <span>Asked 2 days ago</span>
+                        <span>12 answers</span>
+                        <span>210 views</span>
+                    </div>
+                    <div class="question-topics">
+                        <a href="#" class="topic-tag">React</a>
+                        <a href="#" class="topic-tag">Performance</a>
+                        <a href="#" class="topic-tag">Frontend</a>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <a href="#" class="page-link">Previous</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">Next</a>
+                </div>
+            </div>
+
+            
+        </main>
+    </div>
+  
+    <footer class="w-full bg-white p-6 text-center mt-auto rounded-t-lg">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <a href="#" class="text-xl font-bold text-primary no-underline">BCA Connect</a>
+                <p class="text-gray-600 mt-1">Connecting BCA students across Nepal</p>
+            </div>
+            <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-linkedin-in"></i></a>
+                </div>
+        </div>
+        <div class="border-t border-gray-200 mt-6 pt-6 text-center text-gray-500 text-sm">
+            &copy; 2023 BCA Connect Nepal. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>

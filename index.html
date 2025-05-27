@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Connect Nepal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="#" class="logo">BCA Connect</a>
+            <nav class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="question.html"><i class="fas fa-question-circle"></i> Questions</a>
+                <a href="topics.html"><i class="fas fa-users"></i> Topics</a>
+                <a href="notification.html"><i class="fas fa-bell"></i> Notifications</a>
+            </nav>
+        </div>
+        <div class="navbar-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search BCA Connect...">
+                <i class="fas fa-search"></i>
+            </div>
+            <button class="add-question-btn">
+                <i class="fas fa-plus-circle"></i> Add Question
+            </button>
+            <div class="user-profile">
+
+                <!-- <i class="fa-solid fa-user"></i> -->
+                <a href="user.html"> <i class="fa-solid fa-user"></i> </a>
+                </nav>
+                <div class="user-profile">
+
+                    <div class="dropdown-content">
+                        <!-- Show these when user is NOT logged in -->
+                        <a href="#" id="login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="#" id="signup-btn">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Show these when user IS logged in -->
+                        <a href="#" id="profile-btn" style="display: none;">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" id="settings-btn" style="display: none;">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <a href="#" id="logout-btn" style="display: none;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+
+                <script>
+                    // Simple demo of switching between logged in/out states
+                    let loggedIn = false;
+
+                    function toggleLoginState() {
+                        loggedIn = !loggedIn;
+                        updateUI();
+                    }
+
+                    function updateUI() {
+                        if (loggedIn) {
+                            document.getElementById('login-btn').style.display = 'none';
+                            document.getElementById('signup-btn').style.display = 'none';
+                            document.getElementById('profile-btn').style.display = 'block';
+                            document.getElementById('settings-btn').style.display = 'block';
+                            document.getElementById('logout-btn').style.display = 'block';
+                        } else {
+                            document.getElementById('login-btn').style.display = 'block';
+                            document.getElementById('signup-btn').style.display = 'block';
+                            document.getElementById('profile-btn').style.display = 'none';
+                            document.getElementById('settings-btn').style.display = 'none';
+                            document.getElementById('logout-btn').style.display = 'none';
+                        }
+                    }
+
+                    // Add click handlers for demo
+                    document.getElementById('login-btn').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        alert('Login clicked - in a real app this would open a login form');
+                        toggleLoginState();
+                    });
+
+                    document.getElementById('signup-btn').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        alert('Signup clicked - in a real app this would open a signup form');
+                        toggleLoginState();
+                    });
+
+                    document.getElementById('logout-btn').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        alert('Logout clicked - in a real app this would log the user out');
+                        toggleLoginState();
+                    });
+
+                    // Initialize UI
+                    updateUI();
+                </script>
+
+
+
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>BCA Resources</h3>
+                <ul>
+                    <li>
+                        <a href="courses.html"><i class="fas fa-book-open"></i> Course Materials</a>
+                    </li>
+                    <li>
+                        <a href="programm.html"><i class="fas fa-laptop-code"></i> Programming Challenges</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-briefcase"></i> Internships & Jobs</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Communities</h3>
+                <ul>
+                    <li>
+                        <a href="#"><i class="fas fa-users"></i> Web Development</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-database"></i> Database Management</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-network-wired"></i> Networking Basics</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-plus-circle"></i> Create Community</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="create-post-widget">
+                <img src="https://placehold.co/40x40/cccccc/333333?text=U" alt="User Avatar" class="user-avatar-small">
+                <input type="text" placeholder="What's on your mind, BCA student?">
+                <button class="post-btn">
+                    <i class="fas fa-pen"></i> Post
+                </button>
+            </div>
+
+            <div class="mentor-section">
+                <div class="mentor-text-content">
+                    <h2>Need Guidance? Ask a Mentor!</h2>
+                    <p>Connect with experienced BCA seniors and alumni for personalized advice on academics, projects,
+                        and career paths.</p>
+                </div>
+                <button class="ask-mentor-btn">
+                    <i class="fas fa-chalkboard-teacher"></i> Ask a Senior
+                </button>
+            </div>
+            <div>
+                <div class="video-room-widget">
+                    <h2><i class="fas fa-video"></i> Collaborative Study Rooms</h2>
+                    <p>Join live video sessions to solve problems together with classmates.</p>
+                    <div class="video-room-actions">
+                        <button class="join-room-btn">
+                            <i class="fas fa-door-open"></i> Join a Room
+                        </button>
+                        <button class="create-room-btn">
+                            <i class="fas fa-plus"></i> Create Room
+                        </button>
+                    </div>
+                    <!-- Placeholder for video rooms list -->
+                    <div class="active-rooms">
+                        <div class="room-card">
+                            <h3>DSA Study Group</h3>
+                            <p>3 participants | 45 mins left</p>
+                            <button class="join-btn-small">Join Now</button>
+                        </div>
+                        <div class="room-card">
+                            <h3>Web Dev Q&A</h3>
+                            <p>5 participants | 1h left</p>
+                            <button class="join-btn-small">Join Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feed-item" style="margin-top: 10px;">
+                <div class="feed-header">
+                    <img src="https://placehold.co/36x36/a0c4ff/ffffff?text=S1" alt="User Avatar" class="item-avatar">
+                    <div>
+                        <strong class="user-name">Anisha Sharma</strong> <span class="post-info">asked a question · 5
+                            hours ago</span>
+                    </div>
+                </div>
+                <h3 class="feed-title">
+                    <a href="#">"What are the best resources for learning Data Structures and Algorithms in Java for BCA
+                        3rd Sem?"</a>
+                </h3>
+                <p class="feed-text">
+                    I'm struggling with DSA concepts and need some good online courses or books that are easy to follow
+                    for BCA students. Any recommendations specific to Java?
+                </p>
+                <div class="feed-actions">
+                    <button><i class="fas fa-arrow-up"></i> Upvote</button>
+                    <button><i class="fas fa-comment"></i> Answer</button>
+                    <button><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="more-options"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+            </div>
+
+            <div class="feed-item">
+                <div class="feed-header">
+                    <img src="https://placehold.co/36x36/c4a0ff/ffffff?text=S2" alt="User Avatar" class="item-avatar">
+                    <div>
+                        <strong class="user-name">Rohan Thapa</strong> <span class="post-info">answered a question · 1
+                            day ago</span>
+                    </div>
+                </div>
+                <h3 class="feed-title">
+                    <a href="#">"What are the career prospects for BCA graduates in Nepal's IT sector?"</a>
+                </h3>
+                <p class="feed-text">
+                    The IT sector in Nepal is growing, and BCA graduates have diverse opportunities. Many start as
+                    junior developers (web/mobile), QA engineers, or IT support. With experience, roles like team lead,
+                    project manager, or specialized developer (e.g., data science, cybersecurity) become accessible.
+                    Networking and continuous learning are key...
+                </p>
+                <div class="feed-actions">
+                    <button><i class="fas fa-arrow-up"></i> Upvote</button>
+                    <button><i class="fas fa-comment"></i> Comment</button>
+                    <button><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="more-options"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+            </div>
+
+            <div class="feed-item">
+                <div class="feed-header">
+                    <img src="https://placehold.co/36x36/ffc4a0/ffffff?text=M" alt="Mentor Avatar"
+                        class="item-avatar mentor-avatar-border">
+                    <div>
+                        <strong class="user-name">Priya Gurung <span class="mentor-tag">(Mentor)</span></strong> <span
+                            class="post-info">answered a question · 2 days ago</span>
+                    </div>
+                </div>
+                <h3 class="feed-title">
+                    <a href="#">"How important are personal projects for BCA students seeking internships?"</a>
+                </h3>
+                <p class="feed-text">
+                    Personal projects are incredibly important! They demonstrate your practical skills beyond
+                    coursework, show initiative, and give you something concrete to discuss in interviews. Focus on
+                    building projects that solve real-world problems or showcase technologies relevant to your
+                    interests. Even small projects matter...
+                </p>
+                <div class="feed-actions">
+                    <button><i class="fas fa-arrow-up"></i> Upvote</button>
+                    <button><i class="fas fa-comment"></i> Comment</button>
+                    <button><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="more-options"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+            </div>
+
+
+            <div class="feed-item">
+                <div class="feed-header">
+                    <img src="https://placehold.co/36x36/ffc4a0/ffffff?text=M" alt="Mentor Avatar"
+                        class="item-avatar mentor-avatar-border">
+                    <div>
+                        <strong class="user-name">Elisha Chaudhary </strong> <span class="post-info">answered a question
+                            · 2 days ago</span>
+                    </div>
+                </div>
+                <h3 class="feed-title">
+                    <img class="fas fa-quote-left"></i> "Is it important to get internship?"
+                </h3>
+                <p class="feed-text">
+                    Yes, internships are highly important. They provide practical experience, build professional
+                    networks, clarify career goals, and significantly boost your resume. This real-world exposure and
+                    skill development make you a more competitive and confident candidate for future job opportunities.
+                </p>
+                <div class="feed-actions">
+                    <button><i class="fas fa-arrow-up"></i> Upvote</button>
+                    <button><i class="fas fa-comment"></i> Comment</button>
+                    <button><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="more-options"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+            </div>
+
+
+            <main class="main-content">
+                <!-- Video Study Room Widget -->
+
+
+
+            </main>
+    </div>
+    <footer class="w-full bg-white p-6 text-center mt-auto rounded-t-lg">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-xl font-bold text-primary no-underline">BCA Connect</a>
+                    <p class="text-gray-600 mt-1">Connecting BCA students across Nepal</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200"><i
+                            class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-6 pt-6 text-center text-gray-500 text-sm">
+                &copy; 2023 BCA Connect Nepal. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
